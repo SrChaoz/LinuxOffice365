@@ -4,6 +4,7 @@
 APPIMAGE="LinuxOficce365-1.0.0.AppImage"
 APP_NAME="LinuxOficce365"
 ICON_NAME="linuxoficce365.png"
+APPIMAGE_URL="https://github.com/SrChaoz/LinuxOffice365/releases/download/v1.0.0/LinuxOficce365-1.0.0.AppImage"
 APPIMAGE_PATH="$HOME/.local/bin/$APPIMAGE"
 DESKTOP_PATH="$HOME/.local/share/applications/$APP_NAME.desktop"
 ICON_PATH="$HOME/.local/share/icons/$ICON_NAME"
@@ -13,14 +14,14 @@ mkdir -p $HOME/.local/bin
 mkdir -p $HOME/.local/share/applications
 mkdir -p $HOME/.local/share/icons
 
-# Copiar la AppImage
-echo "Copiando la AppImage..."
-if [ -f "dist/$APPIMAGE" ]; then
-  cp "dist/$APPIMAGE" "$APPIMAGE_PATH"
+# Descargar la AppImage
+echo "Descargando la AppImage desde $APPIMAGE_URL..."
+curl -L "$APPIMAGE_URL" -o "$APPIMAGE_PATH"
+if [ $? -eq 0 ]; then
   chmod +x "$APPIMAGE_PATH"
-  echo "AppImage instalada en $APPIMAGE_PATH"
+  echo "AppImage descargada e instalada en $APPIMAGE_PATH"
 else
-  echo "ERROR: No se encontró la AppImage en dist/$APPIMAGE"
+  echo "ERROR: No se pudo descargar la AppImage."
   exit 1
 fi
 
