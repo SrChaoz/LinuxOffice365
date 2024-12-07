@@ -1,0 +1,2 @@
+dist/linux-unpacked/**/* filter=lfs diff=lfs merge=lfs -text
+*.asar filter=lfs diff=lfs merge=lfs -text
